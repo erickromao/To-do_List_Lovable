@@ -64,6 +64,3 @@ Este projeto foi desenvolvido com:
 
 Basta abrir o [Lovable](https://lovable.dev/projects/9dd76f56-5477-405b-85db-3fcfb1b00cf6) e clicar em Compartilhar -> Publicar.
 
-## Quero usar um domínio personalizado - isso é possível?
-
-Ainda não oferecemos suporte para domínios personalizados. Se você deseja implantar seu projeto em seu próprio domínio, recomendamos o uso do Netlify. Consulte nossa documentação para mais detalhes: [Domínios personalizados](https://docs.lovable.dev/tips-tricks/custom-domain/)
