@@ -83,7 +83,7 @@ const Dashboard = () => {
         {/* Header section */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold">Welcome back, {currentUser.name}</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Here's an overview of your tasks and projects</p>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Aqui está uma visão de suas tarefas e projetos.</p>
         </div>
         
         {/* Stats section */}
