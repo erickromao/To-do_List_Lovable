@@ -20,16 +20,16 @@ const Settings = () => {
   return (
     <MainLayout title="Configurações">
       <div className="animate-fade-in">
-        {/* Header section */}
+        {/* Seção de cabeçalho */}
         <div className="mb-8">
           <h1 className="text-2xl font-bold">Configurações</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">Configure sua conta e preferências</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Main settings */}
+          {/* Configurações principais */}
           <div className="md:col-span-2 space-y-6">
-            {/* Profile settings */}
+            {/* Configurações de perfil */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
                 <h2 className="text-lg font-semibold">Configurações de Perfil</h2>
@@ -82,7 +82,7 @@ const Settings = () => {
               </div>
             </div>
             
-            {/* Notification settings */}
+            {/* Configurações de notificações */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
                 <h2 className="text-lg font-semibold">Configurações de Notificações</h2>
@@ -152,9 +152,9 @@ const Settings = () => {
             </div>
           </div>
           
-          {/* Sidebar with additional options */}
+          {/* Sidebar com opções adicionais */}
           <div className="space-y-6">
-            {/* Theme settings */}
+            {/* Configurações de tema */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
                 <h2 className="text-lg font-semibold">Configurações de Tema</h2>
@@ -178,7 +178,7 @@ const Settings = () => {
               </div>
             </div>
             
-            {/* Account */}
+            {/* Conta */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6">
                 <h2 className="text-lg font-semibold">Conta</h2>

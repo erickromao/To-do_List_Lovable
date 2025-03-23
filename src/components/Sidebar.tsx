@@ -51,7 +51,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
               <div className="h-8 w-8 bg-primary rounded-md flex items-center justify-center">
                 <span className="text-white font-semibold">TM</span>
               </div>
-              <h1 className="text-lg font-semibold">Taskia</h1>
+              <h1 className="text-lg font-semibold">Tmanager</h1>
             </div>
             
             {/* Toggle button for desktop */}

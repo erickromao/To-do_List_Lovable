@@ -15,7 +15,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
   const notificationRef = useRef<HTMLDivElement>(null);
   const unreadCount = getUnreadNotificationsCount();
 
-  // Close notifications when clicking outside
+  // Fechar notificações ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (notificationRef.current && !notificationRef.current.contains(event.target as Node)) {
@@ -29,12 +29,12 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
     };
   }, []);
 
-  // Format notification time
+  // Formatar hora da notificação
   const formatTime = (date: Date) => {
     const now = new Date();
     const diff = now.getTime() - new Date(date).getTime();
     
-    // Convert to seconds, minutes, hours, days
+    // Converter para segundos, minutos, horas, dias
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -50,7 +50,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
     <header className="sticky top-0 z-10 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
       <div className="px-4 py-3 flex items-center justify-between">
         <div className="flex items-center space-x-3">
-          {/* Mobile menu button */}
+          {/* Botão do menu para mobile */}
           <button
             onClick={toggleSidebar}
             className="p-2 rounded-md md:hidden text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -59,7 +59,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
             <Menu size={20} />
           </button>
           
-          {/* Search bar */}
+          {/* Barra de busca */}
           <div className="relative w-full max-w-md">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <Search size={16} className="text-gray-400" />
@@ -72,9 +72,9 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
           </div>
         </div>
         
-        {/* Right side icons */}
+        {/* Ícones do lado direito */}
         <div className="flex items-center space-x-4">
-          {/* Notifications */}
+          {/* Notificações */}
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
@@ -89,7 +89,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
               )}
             </button>
             
-            {/* Notifications dropdown */}
+            {/* Menu de notificações */}
             {isNotificationOpen && (
               <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-900 rounded-md shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden z-50 animate-fade-in">
                 <div className="p-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
