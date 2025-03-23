@@ -96,7 +96,7 @@ const Tasks = () => {
   const activeFilterCount = countActiveFilters();
 
   return (
-    <MainLayout title="Tasks">
+    <MainLayout title="Tarefas">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
@@ -307,7 +307,7 @@ const Tasks = () => {
               </div>
             ) : (
               <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8 text-center">
-                <p className="text-gray-600 dark:text-gray-400">No tasks found matching your criteria</p>
+                <p className="text-gray-600 dark:text-gray-400">Nenhuma tarefa encontrada correspondendo aos seus critérios</p>
                 <div className="mt-4 space-x-4">
                   {activeFilterCount > 0 && (
                     <button
@@ -321,7 +321,7 @@ const Tasks = () => {
                     onClick={handleNewTask}
                     className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
                   >
-                    Create New Task
+                    Crie uma nova tarefa
                   </button>
                 </div>
               </div>
