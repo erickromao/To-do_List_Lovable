@@ -78,7 +78,7 @@ const Dashboard = () => {
   };
 
   return (
-    <MainLayout title="Dashboard">
+    <MainLayout title="Painel">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="mb-8">
@@ -273,8 +273,8 @@ const Dashboard = () => {
                 </div>
               ) : (
                 <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8 text-center">
-                  <p className="text-gray-500 dark:text-gray-400">No overdue tasks</p>
-                  <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Good job staying on top of things!</p>
+                  <p className="text-gray-500 dark:text-gray-400">Sem tarefas atrasadas</p>
+                  <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Bom trabalho em manter-se atualizado!</p>
                 </div>
               )}
             </div>
