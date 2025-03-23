@@ -18,12 +18,12 @@ const Settings = () => {
   };
 
   return (
-    <MainLayout title="Settings">
+    <MainLayout title="Configurações">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">Settings</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Configure your account and preferences</p>
+          <h1 className="text-2xl font-bold">Configurações</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Configure sua conta e preferências</p>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -32,7 +32,7 @@ const Settings = () => {
             {/* Profile settings */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-                <h2 className="text-lg font-semibold">Profile Settings</h2>
+                <h2 className="text-lg font-semibold">Configurações de Perfil</h2>
               </div>
               
               <div className="p-6">
@@ -49,14 +49,14 @@ const Settings = () => {
                     <h3 className="font-medium text-lg">{currentUser.name}</h3>
                     <p className="text-gray-600 dark:text-gray-400">{currentUser.email}</p>
                     <button className="mt-2 text-primary hover:underline text-sm">
-                      Change Profile Picture
+                      Alterar Foto de Perfil
                     </button>
                   </div>
                 </div>
                 
                 <div className="mt-6 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium mb-1">Name</label>
+                    <label className="block text-sm font-medium mb-1">Nome</label>
                     <input
                       type="text"
                       defaultValue={currentUser.name}
@@ -76,7 +76,7 @@ const Settings = () => {
                 
                 <div className="mt-6">
                   <button className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors">
-                    Save Changes
+                    Salvar Alterações
                   </button>
                 </div>
               </div>
@@ -85,16 +85,16 @@ const Settings = () => {
             {/* Notification settings */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-                <h2 className="text-lg font-semibold">Notification Settings</h2>
+                <h2 className="text-lg font-semibold">Configurações de Notificações</h2>
               </div>
               
               <div className="p-6">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">Task Assignments</h3>
+                      <h3 className="font-medium">Atribuições de Tarefas</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Get notified when you're assigned to a task
+                        Receba notificações quando for designado para uma tarefa
                       </p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -105,9 +105,9 @@ const Settings = () => {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">Due Date Reminders</h3>
+                      <h3 className="font-medium">Lembretes de Prazos</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Receive alerts for upcoming and overdue tasks
+                        Receba alertas para tarefas próximas e atrasadas
                       </p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -118,9 +118,9 @@ const Settings = () => {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">Comments</h3>
+                      <h3 className="font-medium">Comentários</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Get notified when someone comments on your tasks
+                        Seja notificado quando alguém comentar em suas tarefas
                       </p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -131,9 +131,9 @@ const Settings = () => {
                   
                   <div className="flex items-center justify-between">
                     <div>
-                      <h3 className="font-medium">Status Updates</h3>
+                      <h3 className="font-medium">Atualizações de Status</h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Receive notifications when task statuses change
+                        Receba notificações quando o status das tarefas for alterado
                       </p>
                     </div>
                     <label className="relative inline-flex items-center cursor-pointer">
@@ -145,7 +145,7 @@ const Settings = () => {
                 
                 <div className="mt-6">
                   <button className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors">
-                    Save Preferences
+                    Salvar Preferências
                   </button>
                 </div>
               </div>
@@ -157,15 +157,15 @@ const Settings = () => {
             {/* Theme settings */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-                <h2 className="text-lg font-semibold">Theme Settings</h2>
+                <h2 className="text-lg font-semibold">Configurações de Tema</h2>
               </div>
               
               <div className="p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-medium">Dark Mode</h3>
+                    <h3 className="font-medium">Modo Escuro</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      Toggle between light and dark themes
+                      Alternar entre temas claro e escuro
                     </p>
                   </div>
                   <button 
@@ -181,17 +181,17 @@ const Settings = () => {
             {/* Account */}
             <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
               <div className="p-6">
-                <h2 className="text-lg font-semibold">Account</h2>
+                <h2 className="text-lg font-semibold">Conta</h2>
                 
                 <div className="mt-4 space-y-2">
                   <button className="w-full text-left px-4 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                    Change Password
+                    Alterar Senha
                   </button>
                   <button className="w-full text-left px-4 py-2 text-sm rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                    Privacy Settings
+                    Configurações de Privacidade
                   </button>
                   <button className="w-full text-left px-4 py-2 text-sm text-red-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-                    Sign Out
+                    Sair
                   </button>
                 </div>
               </div>

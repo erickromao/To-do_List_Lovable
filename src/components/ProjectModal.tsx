@@ -37,7 +37,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
     
     // Validate form
     if (!name.trim()) {
-      setError("Project name is required");
+      setError("Nome do projeto é obrigatório");
       return;
     }
     
@@ -57,12 +57,12 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
       <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-md animate-scale-in">
         <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800">
           <h2 className="text-lg font-semibold">
-            {isEditing ? "Edit Project" : "Create New Project"}
+            {isEditing ? "Editar Projeto" : "Criar Novo Projeto"}
           </h2>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Close"
+            aria-label="Fechar"
           >
             <X size={20} />
           </button>
@@ -72,7 +72,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
           <div className="space-y-4">
             <div>
               <label htmlFor="project-name" className="block text-sm font-medium mb-1">
-                Project Name
+                Nome do Projeto
               </label>
               <input
                 id="project-name"
@@ -80,14 +80,14 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
-                placeholder="Enter project name"
+                placeholder="Digite o nome do projeto"
                 autoFocus
               />
             </div>
             
             <div>
               <label htmlFor="project-description" className="block text-sm font-medium mb-1">
-                Description
+                Descrição
               </label>
               <textarea
                 id="project-description"
@@ -95,7 +95,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={4}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
-                placeholder="Enter project description"
+                placeholder="Digite a descrição do projeto"
               />
             </div>
             
@@ -109,13 +109,13 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 onClick={onClose}
                 className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors"
               >
-                Cancel
+                Cancelar
               </button>
               <button
                 type="submit"
                 className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
               >
-                {isEditing ? "Update Project" : "Create Project"}
+                {isEditing ? "Atualizar Projeto" : "Criar Projeto"}
               </button>
             </div>
           </div>

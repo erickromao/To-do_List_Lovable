@@ -26,11 +26,11 @@ const Notifications = () => {
     const days = Math.floor(hours / 24);
     
     if (days > 0) {
-      return days === 1 ? 'Yesterday' : `${days} days ago`;
+      return days === 1 ? 'Ontem' : `${days} dias atrás`;
     }
-    if (hours > 0) return `${hours}h ago`;
-    if (minutes > 0) return `${minutes}m ago`;
-    return 'Just now';
+    if (hours > 0) return `${hours}h atrás`;
+    if (minutes > 0) return `${minutes}m atrás`;
+    return 'Agora mesmo';
   };
   
   // Get icon based on notification type
@@ -65,13 +65,13 @@ const Notifications = () => {
   }, [markAllNotificationsAsRead]);
 
   return (
-    <MainLayout title="Notifications">
+    <MainLayout title="Notificações">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
           <div>
-            <h1 className="text-2xl font-bold">Notifications</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">Stay updated with the latest activity</p>
+            <h1 className="text-2xl font-bold">Notificações</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Mantenha-se atualizado com as últimas atividades</p>
           </div>
           
           {notifications.some(n => !n.read) && (
@@ -80,7 +80,7 @@ const Notifications = () => {
               className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md font-medium text-sm transition-colors"
             >
               <Check size={16} className="mr-1.5" />
-              <span>Mark All as Read</span>
+              <span>Marcar Todas como Lidas</span>
             </button>
           )}
         </div>
@@ -124,9 +124,9 @@ const Notifications = () => {
           ) : (
             <div className="p-8 text-center">
               <Bell size={32} className="mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-600 dark:text-gray-400">No notifications yet</p>
+              <p className="text-gray-600 dark:text-gray-400">Sem notificações</p>
               <p className="text-sm text-gray-500 dark:text-gray-500 mt-1">
-                You'll see updates about your tasks and projects here
+                Você verá atualizações sobre suas tarefas e projetos aqui
               </p>
             </div>
           )}

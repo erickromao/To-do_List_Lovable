@@ -19,7 +19,7 @@ const History = () => {
   
   // Format date
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('en-US', {
+    return new Date(date).toLocaleDateString('pt-BR', {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -28,7 +28,7 @@ const History = () => {
   
   // Format time
   const formatTime = (date: Date) => {
-    return new Date(date).toLocaleTimeString('en-US', {
+    return new Date(date).toLocaleTimeString('pt-BR', {
       hour: '2-digit',
       minute: '2-digit'
     });
@@ -50,30 +50,50 @@ const History = () => {
   };
   
   const groupedTasks = groupTasksByDate();
+  
+  // Status translations
+  const getStatusTranslation = (status: string) => {
+    switch (status) {
+      case 'todo': return 'A Fazer';
+      case 'in-progress': return 'Em Andamento';
+      case 'done': return 'Concluída';
+      default: return status;
+    }
+  };
+  
+  // Priority translations
+  const getPriorityTranslation = (priority: string) => {
+    switch (priority) {
+      case 'low': return 'Baixa';
+      case 'medium': return 'Média';
+      case 'high': return 'Alta';
+      default: return priority;
+    }
+  };
 
   return (
-    <MainLayout title="History">
+    <MainLayout title="Histórico">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">Activity History</h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">Track the progress of your tasks over time</p>
+          <h1 className="text-2xl font-bold">Histórico de Atividades</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">Acompanhe o progresso de suas tarefas ao longo do tempo</p>
         </div>
         
         {/* Stats section */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Total Tasks</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Total de Tarefas</h3>
             <p className="text-2xl font-semibold mt-1">{tasks.length}</p>
           </div>
           
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Completed Tasks</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Tarefas Concluídas</h3>
             <p className="text-2xl font-semibold mt-1">{completedTasks.length}</p>
           </div>
           
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Completion Rate</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Taxa de Conclusão</h3>
             <p className="text-2xl font-semibold mt-1">
               {tasks.length > 0 ? Math.round((completedTasks.length / tasks.length) * 100) : 0}%
             </p>
@@ -83,7 +103,7 @@ const History = () => {
         {/* Activity feed */}
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 overflow-hidden">
           <div className="p-6 border-b border-gray-200 dark:border-gray-800">
-            <h2 className="text-lg font-semibold">Recent Activity</h2>
+            <h2 className="text-lg font-semibold">Atividades Recentes</h2>
           </div>
           
           <div className="divide-y divide-gray-200 dark:divide-gray-800">
@@ -106,7 +126,7 @@ const History = () => {
                             <div>
                               <h4 className="font-medium">{task.title}</h4>
                               <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-                                {task.projectName && `Project: ${task.projectName}`}
+                                {task.projectName && `Projeto: ${task.projectName}`}
                               </p>
                             </div>
                             
@@ -117,7 +137,7 @@ const History = () => {
                               </div>
                               <div className="mt-1">
                                 <span className={`priority-badge ${task.priority}`}>
-                                  {task.priority}
+                                  {getPriorityTranslation(task.priority)}
                                 </span>
                               </div>
                             </div>
@@ -140,7 +160,7 @@ const History = () => {
                             )}
                             
                             <div className="text-sm text-primary flex items-center">
-                              <span>View details</span>
+                              <span>Ver detalhes</span>
                               <ArrowRight size={14} className="ml-1" />
                             </div>
                           </div>
@@ -152,7 +172,7 @@ const History = () => {
               ))
             ) : (
               <div className="p-8 text-center">
-                <p className="text-gray-500 dark:text-gray-400">No activity history available</p>
+                <p className="text-gray-500 dark:text-gray-400">Nenhum histórico de atividade disponível</p>
               </div>
             )}
           </div>

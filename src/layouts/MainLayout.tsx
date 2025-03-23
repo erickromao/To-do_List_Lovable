@@ -42,7 +42,7 @@ const MainLayout = ({ children, title }: MainLayoutProps) => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const pageTitle = title ? title : "Task Manager";
+  const pageTitle = title ? title : "Gerenciador de Tarefas";
   
   // Update document title
   useEffect(() => {

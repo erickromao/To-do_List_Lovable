@@ -40,10 +40,10 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
     const hours = Math.floor(minutes / 60);
     const days = Math.floor(hours / 24);
     
-    if (days > 0) return `${days}d ago`;
-    if (hours > 0) return `${hours}h ago`;
-    if (minutes > 0) return `${minutes}m ago`;
-    return 'Just now';
+    if (days > 0) return `${days}d atrás`;
+    if (hours > 0) return `${hours}h atrás`;
+    if (minutes > 0) return `${minutes}m atrás`;
+    return 'Agora mesmo';
   };
 
   return (
@@ -54,7 +54,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
           <button
             onClick={toggleSidebar}
             className="p-2 rounded-md md:hidden text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Toggle menu"
+            aria-label="Abrir menu"
           >
             <Menu size={20} />
           </button>
@@ -66,7 +66,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
             </div>
             <input
               type="text"
-              placeholder="Search tasks, projects..."
+              placeholder="Buscar tarefas, projetos..."
               className="w-full pl-10 pr-4 py-2 text-sm bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 transition-all"
             />
           </div>
@@ -79,7 +79,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
             <button
               onClick={() => setIsNotificationOpen(!isNotificationOpen)}
               className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors relative"
-              aria-label="Notifications"
+              aria-label="Notificações"
             >
               <Bell size={20} className="text-gray-700 dark:text-gray-300" />
               {unreadCount > 0 && (
@@ -93,13 +93,13 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
             {isNotificationOpen && (
               <div className="absolute right-0 mt-2 w-80 bg-white dark:bg-gray-900 rounded-md shadow-lg border border-gray-200 dark:border-gray-800 overflow-hidden z-50 animate-fade-in">
                 <div className="p-3 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between">
-                  <h3 className="font-medium">Notifications</h3>
+                  <h3 className="font-medium">Notificações</h3>
                   {unreadCount > 0 && (
                     <button
                       onClick={() => markAllNotificationsAsRead()}
                       className="text-xs text-primary hover:underline"
                     >
-                      Mark all as read
+                      Marcar todas como lidas
                     </button>
                   )}
                 </div>
@@ -107,7 +107,7 @@ const Header = ({ toggleSidebar, isSidebarOpen }: HeaderProps) => {
                 <div className="max-h-96 overflow-y-auto">
                   {notifications.length === 0 ? (
                     <div className="p-6 text-center text-gray-500 dark:text-gray-400">
-                      No notifications
+                      Sem notificações
                     </div>
                   ) : (
                     <div>

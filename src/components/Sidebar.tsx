@@ -15,12 +15,12 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
   const unreadCount = getUnreadNotificationsCount();
 
   const navItems = [
-    { name: "Dashboard", path: "/", icon: Home },
-    { name: "Projects", path: "/projects", icon: Folder },
-    { name: "Tasks", path: "/tasks", icon: CheckSquare },
-    { name: "History", path: "/history", icon: History },
-    { name: "Notifications", path: "/notifications", icon: Bell, badge: unreadCount > 0 ? unreadCount : undefined },
-    { name: "Settings", path: "/settings", icon: Settings },
+    { name: "Painel", path: "/", icon: Home },
+    { name: "Projetos", path: "/projects", icon: Folder },
+    { name: "Tarefas", path: "/tasks", icon: CheckSquare },
+    { name: "Histórico", path: "/history", icon: History },
+    { name: "Notificações", path: "/notifications", icon: Bell, badge: unreadCount > 0 ? unreadCount : undefined },
+    { name: "Configurações", path: "/settings", icon: Settings },
   ];
 
   return (
@@ -58,7 +58,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
             <button 
               onClick={onToggle} 
               className="hidden md:flex items-center justify-center rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-150"
-              aria-label={isOpen ? "Close sidebar" : "Open sidebar"}
+              aria-label={isOpen ? "Fechar menu lateral" : "Abrir menu lateral"}
             >
               {isOpen ? <ChevronLeft size={20} /> : <ChevronRight size={20} />}
             </button>
@@ -67,7 +67,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
             <button 
               onClick={onToggle} 
               className="md:hidden flex items-center justify-center rounded-full p-1 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-150"
-              aria-label="Close sidebar"
+              aria-label="Fechar menu lateral"
             >
               <ChevronLeft size={20} />
             </button>
@@ -122,7 +122,7 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
             <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
               <img 
                 src="https://api.dicebear.com/7.x/adventurer/svg?seed=John" 
-                alt="User avatar" 
+                alt="Avatar do usuário" 
                 className="w-full h-full object-cover"
               />
             </div>
@@ -130,8 +130,8 @@ const Sidebar = ({ isOpen, onToggle }: SidebarProps) => {
               "ml-3 transition-all duration-300",
               !isOpen && "md:hidden"
             )}>
-              <p className="text-sm font-medium">You</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Current User</p>
+              <p className="text-sm font-medium">Você</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Usuário Atual</p>
             </div>
           </div>
         </div>

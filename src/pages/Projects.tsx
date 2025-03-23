@@ -34,13 +34,13 @@ const Projects = () => {
   };
 
   return (
-    <MainLayout title="Projects">
+    <MainLayout title="Projetos">
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
           <div>
-            <h1 className="text-2xl font-bold">Projects</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">Manage and track your ongoing projects</p>
+            <h1 className="text-2xl font-bold">Projetos</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Gerencie e acompanhe seus projetos em andamento</p>
           </div>
           
           <button
@@ -48,7 +48,7 @@ const Projects = () => {
             className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md font-medium transition-colors"
           >
             <Plus size={18} className="mr-1.5" />
-            <span>New Project</span>
+            <span>Novo Projeto</span>
           </button>
         </div>
         
@@ -60,7 +60,7 @@ const Projects = () => {
             </div>
             <input
               type="text"
-              placeholder="Search projects..."
+              placeholder="Buscar projetos..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 transition-all"
@@ -79,22 +79,22 @@ const Projects = () => {
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8 text-center">
             {searchQuery ? (
               <>
-                <p className="text-gray-600 dark:text-gray-400">No projects found matching "{searchQuery}"</p>
+                <p className="text-gray-600 dark:text-gray-400">Nenhum projeto encontrado para "{searchQuery}"</p>
                 <button
                   onClick={() => setSearchQuery("")}
                   className="mt-4 text-primary hover:underline"
                 >
-                  Clear search
+                  Limpar busca
                 </button>
               </>
             ) : (
               <>
-                <p className="text-gray-600 dark:text-gray-400">You don't have any projects yet</p>
+                <p className="text-gray-600 dark:text-gray-400">Você ainda não tem projetos</p>
                 <button
                   onClick={handleNewProject}
                   className="mt-4 px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
                 >
-                  Create Your First Project
+                  Criar Seu Primeiro Projeto
                 </button>
               </>
             )}

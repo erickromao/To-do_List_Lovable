@@ -54,12 +54,12 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
     
     // Validate form
     if (!title.trim()) {
-      setError("Task title is required");
+      setError("Título da tarefa é obrigatório");
       return;
     }
     
     if (!selectedProjectId) {
-      setError("Project is required");
+      setError("Projeto é obrigatório");
       return;
     }
     
@@ -87,6 +87,16 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
     
     onClose();
   };
+  
+  // Priority translations
+  const getPriorityTranslation = (priority: string) => {
+    switch (priority) {
+      case 'low': return 'Baixa';
+      case 'medium': return 'Média';
+      case 'high': return 'Alta';
+      default: return priority;
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -95,12 +105,12 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
       <div className="bg-white dark:bg-gray-900 rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-hidden animate-scale-in">
         <div className="flex justify-between items-center p-4 border-b border-gray-200 dark:border-gray-800">
           <h2 className="text-lg font-semibold">
-            {isEditing ? "Edit Task" : "Create New Task"}
+            {isEditing ? "Editar Tarefa" : "Criar Nova Tarefa"}
           </h2>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            aria-label="Close"
+            aria-label="Fechar"
           >
             <X size={20} />
           </button>
@@ -110,7 +120,7 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="task-title" className="block text-sm font-medium mb-1">
-                Task Title
+                Título da Tarefa
               </label>
               <input
                 id="task-title"
@@ -118,14 +128,14 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
-                placeholder="Enter task title"
+                placeholder="Digite o título da tarefa"
                 autoFocus
               />
             </div>
             
             <div>
               <label htmlFor="task-description" className="block text-sm font-medium mb-1">
-                Description
+                Descrição
               </label>
               <textarea
                 id="task-description"
@@ -133,14 +143,14 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                 onChange={(e) => setDescription(e.target.value)}
                 rows={3}
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
-                placeholder="Enter task description"
+                placeholder="Digite a descrição da tarefa"
               />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="task-project" className="block text-sm font-medium mb-1">
-                  Project
+                  Projeto
                 </label>
                 <select
                   id="task-project"
@@ -148,7 +158,7 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                   onChange={(e) => setSelectedProjectId(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
                 >
-                  <option value="" disabled>Select a project</option>
+                  <option value="" disabled>Selecione um projeto</option>
                   {projects.map((project) => (
                     <option key={project.id} value={project.id}>
                       {project.name}
@@ -159,7 +169,7 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
               
               <div>
                 <label htmlFor="task-assignee" className="block text-sm font-medium mb-1">
-                  Assignee
+                  Responsável
                 </label>
                 <select
                   id="task-assignee"
@@ -167,7 +177,7 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                   onChange={(e) => setAssigneeId(e.target.value || null)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
                 >
-                  <option value="">Unassigned</option>
+                  <option value="">Não atribuído</option>
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>
                       {user.name}
@@ -188,15 +198,15 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                   onChange={(e) => setStatus(e.target.value as TaskStatus)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
                 >
-                  <option value="todo">To Do</option>
-                  <option value="in-progress">In Progress</option>
-                  <option value="done">Done</option>
+                  <option value="todo">A Fazer</option>
+                  <option value="in-progress">Em Andamento</option>
+                  <option value="done">Concluída</option>
                 </select>
               </div>
               
               <div>
                 <label htmlFor="task-priority" className="block text-sm font-medium mb-1">
-                  Priority
+                  Prioridade
                 </label>
                 <select
                   id="task-priority"
@@ -204,16 +214,16 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
                   onChange={(e) => setPriority(e.target.value as Priority)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
                 >
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
+                  <option value="low">Baixa</option>
+                  <option value="medium">Média</option>
+                  <option value="high">Alta</option>
                 </select>
               </div>
             </div>
             
             <div>
               <label htmlFor="task-due-date" className="block text-sm font-medium mb-1">
-                Due Date
+                Data de Vencimento
               </label>
               <input
                 id="task-due-date"
@@ -236,13 +246,13 @@ const TaskModal = ({ isOpen, onClose, task, projectId }: TaskModalProps) => {
             onClick={onClose}
             className="px-4 py-2 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors"
           >
-            Cancel
+            Cancelar
           </button>
           <button
             onClick={handleSubmit}
             className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
           >
-            {isEditing ? "Update Task" : "Create Task"}
+            {isEditing ? "Atualizar Tarefa" : "Criar Tarefa"}
           </button>
         </div>
       </div>

@@ -22,7 +22,7 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
   
   // Format date
   const formatDate = (date: Date) => {
-    return new Date(date).toLocaleDateString('en-US', {
+    return new Date(date).toLocaleDateString('pt-BR', {
       year: 'numeric',
       month: 'short',
       day: 'numeric'
@@ -30,7 +30,7 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
   };
   
   const handleDelete = () => {
-    if (window.confirm(`Are you sure you want to delete project "${project.name}"?`)) {
+    if (window.confirm(`Tem certeza que deseja excluir o projeto "${project.name}"?`)) {
       deleteProject(project.id);
     }
     setIsMenuOpen(false);
@@ -47,7 +47,7 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
-              aria-label="More options"
+              aria-label="Mais opções"
             >
               <MoreHorizontal size={18} className="text-gray-500" />
             </button>
@@ -62,14 +62,14 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
                   className="w-full text-left px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center space-x-2"
                 >
                   <Edit size={14} />
-                  <span>Edit</span>
+                  <span>Editar</span>
                 </button>
                 <button
                   onClick={handleDelete}
                   className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-800 flex items-center space-x-2"
                 >
                   <Trash2 size={14} />
-                  <span>Delete</span>
+                  <span>Excluir</span>
                 </button>
               </div>
             )}
@@ -86,7 +86,7 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
             <div className="flex items-center space-x-1.5">
               <CheckSquare size={14} className="text-gray-500" />
               <span className="text-sm text-gray-600 dark:text-gray-400">
-                {completedTasks}/{totalTasks} tasks
+                {completedTasks}/{totalTasks} tarefas
               </span>
             </div>
             <span className="text-xs font-medium">{completionPercentage}%</span>
@@ -101,14 +101,14 @@ const ProjectCard = ({ project, onEdit }: ProjectCardProps) => {
         
         <div className="mt-4 flex justify-between items-center">
           <div className="text-xs text-gray-500 dark:text-gray-400">
-            Updated {formatDate(project.updatedAt)}
+            Atualizado em {formatDate(project.updatedAt)}
           </div>
           
           <Link
             to={`/projects/${project.id}`}
             className="text-xs text-primary flex items-center hover:underline"
           >
-            <span>View Project</span>
+            <span>Ver Projeto</span>
             <ArrowRight size={12} className="ml-1" />
           </Link>
         </div>

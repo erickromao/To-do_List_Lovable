@@ -29,9 +29,9 @@ const TaskDetail = () => {
   
   // Format date
   const formatDate = (date: Date | null) => {
-    if (!date) return "No due date";
+    if (!date) return "Sem data definida";
     
-    return new Date(date).toLocaleDateString('en-US', {
+    return new Date(date).toLocaleDateString('pt-BR', {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
@@ -41,7 +41,7 @@ const TaskDetail = () => {
   
   // Format time
   const formatTime = (date: Date) => {
-    return new Date(date).toLocaleTimeString('en-US', {
+    return new Date(date).toLocaleTimeString('pt-BR', {
       hour: '2-digit',
       minute: '2-digit'
     });
@@ -60,7 +60,7 @@ const TaskDetail = () => {
   };
   
   const handleDeleteTask = () => {
-    if (window.confirm("Are you sure you want to delete this task?")) {
+    if (window.confirm("Tem certeza que deseja excluir esta tarefa?")) {
       deleteTask(task.id);
       navigate("/tasks", { replace: true });
     }
@@ -79,9 +79,19 @@ const TaskDetail = () => {
     setCommentText("");
     setTask(getTaskById(task.id));
   };
+  
+  // Priority translations
+  const getPriorityTranslation = (priority: string) => {
+    switch (priority) {
+      case 'low': return 'Baixa';
+      case 'medium': return 'Média';
+      case 'high': return 'Alta';
+      default: return priority;
+    }
+  };
 
   return (
-    <MainLayout title={`Task: ${task.title}`}>
+    <MainLayout title={`Tarefa: ${task.title}`}>
       <div className="animate-fade-in">
         {/* Back button */}
         <button
@@ -89,7 +99,7 @@ const TaskDetail = () => {
           className="inline-flex items-center text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 mb-6 transition-colors"
         >
           <ArrowLeft size={18} className="mr-1" />
-          <span>Back</span>
+          <span>Voltar</span>
         </button>
         
         {/* Task header */}
@@ -101,12 +111,12 @@ const TaskDetail = () => {
                 onChange={handleStatusChange}
                 className="bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 py-1"
               >
-                <option value="todo">To Do</option>
-                <option value="in-progress">In Progress</option>
-                <option value="done">Done</option>
+                <option value="todo">A Fazer</option>
+                <option value="in-progress">Em Andamento</option>
+                <option value="done">Concluída</option>
               </select>
               <span className={`priority-badge ${task.priority} capitalize`}>
-                {task.priority}
+                {getPriorityTranslation(task.priority)}
               </span>
             </div>
             
@@ -116,14 +126,14 @@ const TaskDetail = () => {
                 className="inline-flex items-center justify-center px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 rounded-md text-sm font-medium transition-colors"
               >
                 <Edit size={16} className="mr-1.5" />
-                <span>Edit</span>
+                <span>Editar</span>
               </button>
               <button
                 onClick={handleDeleteTask}
                 className="inline-flex items-center justify-center px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 dark:bg-red-900/30 dark:hover:bg-red-900/40 dark:text-red-400 rounded-md text-sm font-medium transition-colors"
               >
                 <Trash2 size={16} className="mr-1.5" />
-                <span>Delete</span>
+                <span>Excluir</span>
               </button>
             </div>
           </div>
@@ -134,14 +144,14 @@ const TaskDetail = () => {
           <div className="flex flex-wrap gap-6 mt-4">
             <div className="flex items-center text-gray-600 dark:text-gray-400">
               <Calendar size={16} className="mr-1.5" />
-              <span>Created on {formatDate(task.createdAt)}</span>
+              <span>Criado em {formatDate(task.createdAt)}</span>
             </div>
             
             <div className="flex items-center text-gray-600 dark:text-gray-400">
               <Clock size={16} className={`mr-1.5 ${isOverdue() ? 'text-red-500' : ''}`} />
               <span className={isOverdue() ? 'text-red-500 font-medium' : ''}>
-                {task.dueDate ? `Due on ${formatDate(task.dueDate)}` : 'No due date'}
-                {isOverdue() && ' (Overdue)'}
+                {task.dueDate ? `Vence em ${formatDate(task.dueDate)}` : 'Sem data de vencimento'}
+                {isOverdue() && ' (Atrasada)'}
               </span>
             </div>
           </div>
@@ -149,14 +159,14 @@ const TaskDetail = () => {
           <div className="flex flex-wrap gap-6 mt-4">
             {task.projectName && (
               <div>
-                <span className="text-sm text-gray-500 dark:text-gray-400">Project</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Projeto</span>
                 <p className="font-medium mt-1">{task.projectName}</p>
               </div>
             )}
             
             {task.assigneeName && (
               <div>
-                <span className="text-sm text-gray-500 dark:text-gray-400">Assignee</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Responsável</span>
                 <div className="flex items-center mt-1">
                   <div className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden mr-2">
                     <img
@@ -174,21 +184,21 @@ const TaskDetail = () => {
         
         {/* Task description */}
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-6 mb-6">
-          <h2 className="text-lg font-semibold mb-4">Description</h2>
+          <h2 className="text-lg font-semibold mb-4">Descrição</h2>
           {task.description ? (
             <p className="whitespace-pre-line">{task.description}</p>
           ) : (
-            <p className="text-gray-500 dark:text-gray-400 italic">No description provided</p>
+            <p className="text-gray-500 dark:text-gray-400 italic">Sem descrição fornecida</p>
           )}
         </div>
         
         {/* Attachments */}
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-6 mb-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Attachments</h2>
+            <h2 className="text-lg font-semibold">Anexos</h2>
             <button className="inline-flex items-center justify-center text-primary hover:underline text-sm">
               <Paperclip size={16} className="mr-1" />
-              <span>Add Attachment</span>
+              <span>Adicionar Anexo</span>
             </button>
           </div>
           
@@ -203,7 +213,7 @@ const TaskDetail = () => {
                   <div className="flex-1">
                     <p className="font-medium">{attachment.name}</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">
-                      Uploaded on {formatDate(attachment.uploadedAt)}
+                      Adicionado em {formatDate(attachment.uploadedAt)}
                     </p>
                   </div>
                   <a
@@ -211,26 +221,26 @@ const TaskDetail = () => {
                     download
                     className="text-primary hover:underline text-sm"
                   >
-                    Download
+                    Baixar
                   </a>
                 </div>
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 dark:text-gray-400">No attachments</p>
+            <p className="text-gray-500 dark:text-gray-400">Nenhum anexo</p>
           )}
         </div>
         
         {/* Comments */}
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-6">
-          <h2 className="text-lg font-semibold mb-4">Comments</h2>
+          <h2 className="text-lg font-semibold mb-4">Comentários</h2>
           
           {/* Comment form */}
           <form onSubmit={handleAddComment} className="mb-6">
             <textarea
               value={commentText}
               onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Add a comment..."
+              placeholder="Adicione um comentário..."
               className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-primary/50 dark:bg-gray-800"
               rows={3}
             />
@@ -240,7 +250,7 @@ const TaskDetail = () => {
                 disabled={!commentText.trim()}
                 className="px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Add Comment
+                Adicionar Comentário
               </button>
             </div>
           </form>
@@ -260,7 +270,7 @@ const TaskDetail = () => {
                     </div>
                     <span className="font-medium">{comment.authorName}</span>
                     <span className="text-gray-500 dark:text-gray-400 text-sm ml-2">
-                      {formatDate(comment.createdAt)} at {formatTime(comment.createdAt)}
+                      {formatDate(comment.createdAt)} às {formatTime(comment.createdAt)}
                     </span>
                   </div>
                   <p className="whitespace-pre-line">{comment.content}</p>
@@ -268,7 +278,7 @@ const TaskDetail = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 dark:text-gray-400">No comments yet</p>
+            <p className="text-gray-500 dark:text-gray-400">Nenhum comentário ainda</p>
           )}
         </div>
       </div>
