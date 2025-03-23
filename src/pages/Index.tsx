@@ -82,7 +82,7 @@ const Dashboard = () => {
       <div className="animate-fade-in">
         {/* Header section */}
         <div className="mb-8">
-          <h1 className="text-2xl font-bold">Welcome back, {currentUser.name}</h1>
+          <h1 className="text-2xl font-bold">Bem-vindo, {currentUser.name}</h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">Aqui está uma visão de suas tarefas e projetos.</p>
         </div>
         
@@ -91,7 +91,7 @@ const Dashboard = () => {
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">My Tasks</h3>
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Minha tarefa</h3>
                 <p className="text-2xl font-semibold mt-1">{myTasks.length}</p>
               </div>
               <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full">
@@ -99,7 +99,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center text-sm">
-              <span className="text-gray-500 dark:text-gray-400">Completion Rate</span>
+              <span className="text-gray-500 dark:text-gray-400">Taxa de conclusão</span>
               <span className="ml-auto font-medium">{taskCompletionRate}%</span>
             </div>
             <div className="mt-2 w-full bg-gray-200 dark:bg-gray-700 rounded-full h-1.5">
@@ -113,7 +113,7 @@ const Dashboard = () => {
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Projects</h3>
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Projetos</h3>
                 <p className="text-2xl font-semibold mt-1">{projects.length}</p>
               </div>
               <div className="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-full">
@@ -121,7 +121,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center text-sm">
-              <span className="text-gray-500 dark:text-gray-400">In Progress</span>
+              <span className="text-gray-500 dark:text-gray-400">Em progresso</span>
               <span className="ml-auto font-medium">{inProgressProjects}</span>
             </div>
             <div className="mt-2 flex items-center space-x-1">
@@ -153,7 +153,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="mt-4 flex items-center text-sm">
-              <span className="text-gray-500 dark:text-gray-400">Due Today</span>
+              <span className="text-gray-500 dark:text-gray-400">Vencimento hoje </span>
               <span className="ml-auto font-medium">{todayTasks.length}</span>
             </div>
             <div className="mt-2 flex items-center space-x-1">
@@ -166,7 +166,8 @@ const Dashboard = () => {
                   <ArrowRight size={16} className="ml-1" />
                 </Link>
               ) : (
-                <span className="text-sm text-gray-500 dark:text-gray-400">No tasks due today</span>
+                <span className="text-sm text-gray-500 dark:text-gray-400">Nenhuma tarefa para vencer hoje
+</span>
               )}
             </div>
           </div>
@@ -178,13 +179,13 @@ const Dashboard = () => {
             {/* Today's tasks */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">Today's Tasks</h2>
+                <h2 className="text-lg font-semibold">Tarefas de hoje</h2>
                 <button
                   onClick={handleNewTask}
                   className="flex items-center text-sm text-primary hover:bg-primary/5 px-2 py-1 rounded-md transition-colors"
                 >
                   <Plus size={16} className="mr-1" />
-                  <span>New Task</span>
+                  <span>Nova tarefa</span>
                 </button>
               </div>
               
@@ -196,12 +197,13 @@ const Dashboard = () => {
                 </div>
               ) : (
                 <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8 text-center">
-                  <p className="text-gray-500 dark:text-gray-400">You don't have any tasks due today</p>
+                  <p className="text-gray-500 dark:text-gray-400">Você não tem nenhuma tarefa para entregar hoje
+                  </p>
                   <button
                     onClick={handleNewTask}
                     className="mt-4 px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md text-sm font-medium transition-colors"
                   >
-                    Create New Task
+                    Criar uma nova tarefa
                   </button>
                 </div>
               )}
@@ -222,7 +224,7 @@ const Dashboard = () => {
             {/* Upcoming tasks */}
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">Upcoming Tasks</h2>
+                <h2 className="text-lg font-semibold">Próximas tarefas</h2>
               </div>
               
               {upcomingTasks.length > 0 ? (
@@ -233,7 +235,7 @@ const Dashboard = () => {
                 </div>
               ) : (
                 <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8 text-center">
-                  <p className="text-gray-500 dark:text-gray-400">No upcoming tasks for the next 7 days</p>
+                  <p className="text-gray-500 dark:text-gray-400">Nenhuma tarefa futura para os próximos 7 dias</p>
                 </div>
               )}
               
@@ -255,7 +257,7 @@ const Dashboard = () => {
           <div className="lg:col-span-2">
             <div className="sticky top-20">
               <div className="flex items-center justify-between mb-4">
-                <h2 className="text-lg font-semibold">Overdue Tasks</h2>
+                <h2 className="text-lg font-semibold">Tarefas atrasadas</h2>
                 {overdueTasks.length > 0 && (
                   <span className="bg-red-100 text-red-700 text-xs font-medium px-2.5 py-1 rounded-full dark:bg-red-900/30 dark:text-red-400">
                     {overdueTasks.length}

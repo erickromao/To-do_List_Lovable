@@ -101,8 +101,9 @@ const Tasks = () => {
         {/* Header section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 space-y-4 md:space-y-0">
           <div>
-            <h1 className="text-2xl font-bold">Tasks</h1>
-            <p className="text-gray-600 dark:text-gray-400 mt-1">Manage and track all your tasks</p>
+            <h1 className="text-2xl font-bold">Tarefas</h1>
+            <p className="text-gray-600 dark:text-gray-400 mt-1">Gerencie e acompanhe todas as suas tarefas
+            </p>
           </div>
           
           <div className="flex space-x-3">
@@ -116,7 +117,7 @@ const Tasks = () => {
                     : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
                 } transition-colors`}
               >
-                List
+                Lista
               </button>
               <button
                 onClick={() => setView("kanban")}
@@ -135,7 +136,7 @@ const Tasks = () => {
               className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md font-medium transition-colors"
             >
               <Plus size={18} className="mr-1.5" />
-              <span>New Task</span>
+              <span>Nova tarefa</span>
             </button>
           </div>
         </div>
@@ -149,7 +150,7 @@ const Tasks = () => {
               </div>
               <input
                 type="text"
-                placeholder="Search tasks..."
+                placeholder="Procurar tarefas..."
                 value={localFilter.searchQuery || ""}
                 onChange={(e) => setLocalFilter({ ...localFilter, searchQuery: e.target.value })}
                 className="w-full pl-10 pr-4 py-2 bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 transition-all"
@@ -166,7 +167,7 @@ const Tasks = () => {
                 }`}
               >
                 <Filter size={16} className="mr-1.5" />
-                <span>Filters</span>
+                <span>Filtros</span>
                 {activeFilterCount > 0 && (
                   <span className="ml-1.5 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
                     {activeFilterCount}
@@ -180,7 +181,7 @@ const Tasks = () => {
                   className="inline-flex items-center justify-center px-4 py-2 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md font-medium text-sm transition-colors"
                 >
                   <X size={16} className="mr-1.5" />
-                  <span>Clear</span>
+                  <span>Limpar</span>
                 </button>
               )}
               
@@ -188,7 +189,7 @@ const Tasks = () => {
                 onClick={applyFilters}
                 className="inline-flex items-center justify-center px-4 py-2 bg-primary text-white hover:bg-primary/90 rounded-md font-medium text-sm transition-colors"
               >
-                <span>Apply</span>
+                <span>Aplicar</span>
               </button>
             </div>
           </div>
@@ -200,7 +201,7 @@ const Tasks = () => {
               <div>
                 <label className="block text-sm font-medium mb-2">Status</label>
                 <div className="space-y-2">
-                  {["todo", "in-progress", "done"].map((status) => (
+                  {["Pendente", "Em progresso", "Pronto"].map((status) => (
                     <label key={status} className="flex items-center">
                       <input
                         type="checkbox"
@@ -219,9 +220,9 @@ const Tasks = () => {
               
               {/* Priority filter */}
               <div>
-                <label className="block text-sm font-medium mb-2">Priority</label>
+                <label className="block text-sm font-medium mb-2">Prioridade</label>
                 <div className="space-y-2">
-                  {["low", "medium", "high"].map((priority) => (
+                  {["Baixo", "Médio", "Alta"].map((priority) => (
                     <label key={priority} className="flex items-center">
                       <input
                         type="checkbox"
@@ -237,13 +238,13 @@ const Tasks = () => {
               
               {/* Project filter */}
               <div>
-                <label className="block text-sm font-medium mb-2">Project</label>
+                <label className="block text-sm font-medium mb-2">Projeto</label>
                 <select
                   value={localFilter.projectId || ""}
                   onChange={(e) => setLocalFilter({ ...localFilter, projectId: e.target.value || undefined })}
                   className="w-full bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 transition-all"
                 >
-                  <option value="">All Projects</option>
+                  <option value="">Todos</option>
                   {projects.map((project) => (
                     <option key={project.id} value={project.id}>
                       {project.name}
@@ -254,13 +255,13 @@ const Tasks = () => {
               
               {/* Assignee filter */}
               <div>
-                <label className="block text-sm font-medium mb-2">Assignee</label>
+                <label className="block text-sm font-medium mb-2">Participante</label>
                 <select
                   value={localFilter.assigneeId || ""}
                   onChange={(e) => setLocalFilter({ ...localFilter, assigneeId: e.target.value || undefined })}
                   className="w-full bg-gray-100 dark:bg-gray-800 border-0 rounded-md focus:ring-2 focus:ring-primary/50 transition-all"
                 >
-                  <option value="">All Assignees</option>
+                  <option value="">Todos</option>
                   {users.map((user) => (
                     <option key={user.id} value={user.id}>
                       {user.name}
@@ -271,13 +272,13 @@ const Tasks = () => {
               
               {/* Due date filter */}
               <div>
-                <label className="block text-sm font-medium mb-2">Due Date</label>
+                <label className="block text-sm font-medium mb-2">Data de vencimento</label>
                 <div className="space-y-2">
                   {[
-                    { value: "today", label: "Due Today" },
-                    { value: "thisWeek", label: "Due This Week" },
-                    { value: "overdue", label: "Overdue" },
-                    { value: "noDueDate", label: "No Due Date" },
+                    { value: "today", label: "Vencimento hoje" },
+                    { value: "thisWeek", label: "Vencimento esta semana" },
+                    { value: "overdue", label: "Vencido" },
+                    { value: "noDueDate", label: "Sem data de vencimento" },
                   ].map((option) => (
                     <label key={option.value} className="flex items-center">
                       <input
@@ -333,7 +334,7 @@ const Tasks = () => {
               <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800/50">
                 <div className="flex items-center">
                   <span className="status-dot todo mr-2"></span>
-                  <h3 className="font-medium">To Do</h3>
+                  <h3 className="font-medium">Pendente</h3>
                 </div>
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
                   {tasksByStatus.todo.length}
@@ -357,7 +358,7 @@ const Tasks = () => {
               <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800/50">
                 <div className="flex items-center">
                   <span className="status-dot in-progress mr-2"></span>
-                  <h3 className="font-medium">In Progress</h3>
+                  <h3 className="font-medium">Em progresso</h3>
                 </div>
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
                   {tasksByStatus["in-progress"].length}
@@ -381,7 +382,7 @@ const Tasks = () => {
               <div className="p-4 border-b border-gray-200 dark:border-gray-800 flex items-center justify-between bg-gray-50 dark:bg-gray-800/50">
                 <div className="flex items-center">
                   <span className="status-dot done mr-2"></span>
-                  <h3 className="font-medium">Done</h3>
+                  <h3 className="font-medium">Pronto</h3>
                 </div>
                 <span className="text-gray-500 dark:text-gray-400 text-sm">
                   {tasksByStatus.done.length}

@@ -54,7 +54,7 @@ const History = () => {
   // Status translations
   const getStatusTranslation = (status: string) => {
     switch (status) {
-      case 'todo': return 'A Fazer';
+      case 'todo': return 'Pendente';
       case 'in-progress': return 'Em Andamento';
       case 'done': return 'Concluída';
       default: return status;
