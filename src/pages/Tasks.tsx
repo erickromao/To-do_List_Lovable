@@ -1,11 +1,10 @@
-
 import { useState, useEffect } from "react";
 import MainLayout from "@/layouts/MainLayout";
 import { useTaskContext } from "@/context/TaskContext";
 import TaskCard from "@/components/TaskCard";
 import TaskModal from "@/components/TaskModal";
 import { Task, TaskStatus, Priority, FilterOptions } from "@/types";
-import { Plus, Search, Filter, X, Calendar } from "lucide-react";
+import { Plus, Search, Filter, X } from "lucide-react";
 
 const Tasks = () => {
   const { 

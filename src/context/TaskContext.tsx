@@ -1,3 +1,4 @@
+
 import React, {
   createContext,
   useState,
@@ -5,6 +6,7 @@ import React, {
   useContext,
   ReactNode,
   useCallback,
+  useMemo,
 } from "react";
 import { v4 as uuidv4 } from "uuid";
 import {
@@ -25,6 +27,7 @@ type TaskContextType = {
   notifications: Notification[];
   currentUser: User;
   filterOptions: FilterOptions;
+  filteredTasks: Task[]; // Added missing property
   setFilterOptions: React.Dispatch<React.SetStateAction<FilterOptions>>;
   getTasksByStatus: (status: TaskStatus) => Task[];
   getUnreadNotificationsCount: () => number;
@@ -128,6 +131,20 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     localStorage.setItem("notifications", JSON.stringify(notifications));
   }, [notifications]);
+  
+  // Add notification - Moving this function to the top to fix the reference issue
+  const addNotification = useCallback(
+    (notificationData: Omit<Notification, "id" | "read" | "createdAt">) => {
+      const newNotification: Notification = {
+        id: uuidv4(),
+        ...notificationData,
+        read: false,
+        createdAt: new Date(),
+      };
+      setNotifications((prev) => [newNotification, ...prev]);
+    },
+    []
+  );
 
   // Get tasks filtered by status
   const getTasksByStatus = useCallback(
@@ -385,19 +402,68 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     [toast]
   );
 
-  // Add notification
-  const addNotification = useCallback(
-    (notificationData: Omit<Notification, "id" | "read" | "createdAt">) => {
-      const newNotification: Notification = {
-        id: uuidv4(),
-        ...notificationData,
-        read: false,
-        createdAt: new Date(),
-      };
-      setNotifications((prev) => [newNotification, ...prev]);
-    },
-    []
-  );
+  // Calculate filtered tasks
+  const filteredTasks = useMemo(() => {
+    return tasks.filter((task) => {
+      // Filter by search query
+      if (filterOptions.searchQuery && !task.title.toLowerCase().includes(filterOptions.searchQuery.toLowerCase()) && 
+          !task.description.toLowerCase().includes(filterOptions.searchQuery.toLowerCase())) {
+        return false;
+      }
+
+      // Filter by status
+      if (filterOptions.status && filterOptions.status.length > 0 && !filterOptions.status.includes(task.status)) {
+        return false;
+      }
+
+      // Filter by priority
+      if (filterOptions.priority && filterOptions.priority.length > 0 && !filterOptions.priority.includes(task.priority)) {
+        return false;
+      }
+
+      // Filter by project
+      if (filterOptions.projectId && task.projectId !== filterOptions.projectId) {
+        return false;
+      }
+
+      // Filter by assignee
+      if (filterOptions.assigneeId && task.assigneeId !== filterOptions.assigneeId) {
+        return false;
+      }
+
+      // Filter by due date
+      if (filterOptions.dueDate) {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        const taskDueDate = task.dueDate ? new Date(task.dueDate) : null;
+        
+        if (filterOptions.dueDate === 'today') {
+          if (!taskDueDate) return false;
+          const dueDate = new Date(taskDueDate);
+          dueDate.setHours(0, 0, 0, 0);
+          if (dueDate.getTime() !== today.getTime()) return false;
+        } else if (filterOptions.dueDate === 'thisWeek') {
+          if (!taskDueDate) return false;
+          const dueDate = new Date(taskDueDate);
+          dueDate.setHours(0, 0, 0, 0);
+          
+          const endOfWeek = new Date(today);
+          endOfWeek.setDate(today.getDate() + (7 - today.getDay()));
+          
+          if (dueDate < today || dueDate > endOfWeek) return false;
+        } else if (filterOptions.dueDate === 'overdue') {
+          if (!taskDueDate) return false;
+          const dueDate = new Date(taskDueDate);
+          if (dueDate >= today) return false;
+        } else if (filterOptions.dueDate === 'noDueDate') {
+          if (taskDueDate) return false;
+        }
+      }
+
+      return true;
+    });
+  }, [tasks, filterOptions]);
 
   // Provider value
   const value: TaskContextType = {
@@ -407,6 +473,7 @@ export const TaskProvider = ({ children }: { children: ReactNode }) => {
     notifications,
     currentUser,
     filterOptions,
+    filteredTasks,
     setFilterOptions,
     getTasksByStatus,
     getUnreadNotificationsCount,
