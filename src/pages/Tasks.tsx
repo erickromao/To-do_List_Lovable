@@ -347,7 +347,7 @@ const Tasks = () => {
                   ))
                 ) : (
                   <div className="p-6 text-center">
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">No tasks</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Sem tarefas</p>
                   </div>
                 )}
               </div>
@@ -371,7 +371,7 @@ const Tasks = () => {
                   ))
                 ) : (
                   <div className="p-6 text-center">
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">No tasks</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Sem tarefas</p>
                   </div>
                 )}
               </div>
@@ -395,7 +395,7 @@ const Tasks = () => {
                   ))
                 ) : (
                   <div className="p-6 text-center">
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">No tasks</p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">Sem tarefas</p>
                   </div>
                 )}
               </div>
