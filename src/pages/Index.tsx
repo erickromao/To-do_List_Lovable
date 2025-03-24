@@ -145,7 +145,7 @@ const Dashboard = () => {
           <div className="bg-white dark:bg-gray-900 rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-5">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Overdue</h3>
+                <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Atrasado</h3>
                 <p className="text-2xl font-semibold mt-1">{overdueTasks.length}</p>
               </div>
               <div className="bg-red-100 dark:bg-red-900/30 p-3 rounded-full">
